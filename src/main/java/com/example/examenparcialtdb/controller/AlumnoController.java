@@ -22,9 +22,24 @@ public class AlumnoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AlumnoModel> buscarPorId(@PathVariable Integer id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("El ID debe ser mayor que 0");
+        }
         AlumnoModel alumno = service.buscarPorId(id);
-        return alumno != null ? ResponseEntity.ok(alumno) : ResponseEntity.notFound().build();
+        if (alumno == null) {
+            throw new NullPointerException("Alumno no encontrado");
+        }
+        return ResponseEntity.ok(alumno);
     }
+        //AlumnoModel alumno = service.buscarPorId(id);
+        //return alumno != null ? ResponseEntity.ok(alumno) : ResponseEntity.notFound().build();
+        //if (id <= 0) {
+        //    throw new IllegalArgumentException("El ID debe ser mayor que 0");
+        //}
+        // Simulamos un error si no se encuentra el alumno
+       // throw new NullPointerException("Alumno no encontrado");
+    
+    
 
     @PostMapping
     public AlumnoModel guardar(@RequestBody AlumnoModel alumno) {
