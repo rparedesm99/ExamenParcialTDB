@@ -1,15 +1,16 @@
 package com.example.examenparcialtdb.controller;
-
+import com.example.examenparcialtdb.utils.Routes;
 import com.example.examenparcialtdb.model.AlumnoModel;
 import com.example.examenparcialtdb.services.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/alumnos")
+@RequestMapping(Routes.ALUMNOS_BASE)
 public class AlumnoController {
     @Autowired
     private AlumnoService service;
